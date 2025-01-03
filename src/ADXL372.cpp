@@ -195,6 +195,58 @@ void ADXL372class::readAcceleration(float &x, float &y, float &z)
     z = rawZ * SCALE_FACTOR * MG_TO_G;
 }
 
+void ADXL372class::readAccelerationX(float &x)
+{
+    byte status;
+    do
+    {
+        status = readRegister(0x04);
+    } while ((status & 0x01) == 0); // Waiting for status register
+
+    // The register is left justified. *DATA_H has bits 11:4 of the register. *DATA_L has bits 3:0.
+    short rawX = readRegister(XDATA_H) << 8 | readRegister(XDATA_L);
+
+    rawX = rawX >> 4;
+
+    // Converting raw axis data to acceleration in g unit
+    x = rawX * SCALE_FACTOR * MG_TO_G;
+}
+
+void ADXL372class::readAccelerationY(float &y)
+{
+    byte status;
+    do
+    {
+        status = readRegister(0x04);
+    } while ((status & 0x01) == 0); // Waiting for status register
+
+    // The register is left justified. *DATA_H has bits 11:4 of the register. *DATA_L has bits 3:0.
+    short rawY = readRegister(YDATA_H) << 8 | readRegister(YDATA_L);
+
+    rawY = rawY >> 4;
+
+    // Converting raw axis data to acceleration in g unit
+    y = rawY * SCALE_FACTOR * MG_TO_G;
+}
+
+void ADXL372class::readAccelerationZ(float &z)
+{
+    byte status;
+    do
+    {
+        status = readRegister(0x04);
+    } while ((status & 0x01) == 0); // Waiting for status register
+
+    // The register is left justified. *DATA_H has bits 11:4 of the register. *DATA_L has bits 3:0.
+    short rawZ = readRegister(ZDATA_H) << 8 | readRegister(ZDATA_L);
+
+    rawZ = rawZ >> 4;
+
+    // Converting raw axis data to acceleration in g unit
+    z = rawZ * SCALE_FACTOR * MG_TO_G;
+}
+
+
 void ADXL372class::readPeakAcceleration(float &xPeak, float &yPeak, float &zPeak)
 {
     byte status;
