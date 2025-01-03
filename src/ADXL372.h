@@ -103,6 +103,9 @@ public:
     bool selfTest();
 
     void readAcceleration(float &x, float &y, float &z);
+    void readAccelerationX(float &x);
+    void readAccelerationY(float &y);
+    void readAccelerationZ(float &z);
     void readPeakAcceleration(float &x, float &y, float &z);
 
     void setOffsetTrims(float xOffset, float yOffset, float zOffset);
@@ -146,6 +149,7 @@ public:
     void disableLowPassFilter(bool isDisabled);
     void setFilterSettling(FilterSettlingPeriod filterSettling);
     void setInstantOnThreshold(InstantOnThreshold threshold);
+    void reset();
 
 private:
     int m_csPin;
