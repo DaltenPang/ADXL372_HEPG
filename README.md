@@ -6,7 +6,7 @@ Please read the documentation: [ADXL372 Datasheet](https://www.analog.com/media/
 
 ### How to install:
 1. Download library
-2. Place into Ardunio IDE librarys folder. Ex.: C:\Users\...\Documents\Arduino\libraries
+2. Place into Ardunio IDE librarys folder. Ex.: C:\Users\ ...\Documents\Arduino\libraries
 
 ### How to use:
 This library uses SPI as communication with the accelerometer. I²C is supported, but has limited functionality. See the documentation for further information.
