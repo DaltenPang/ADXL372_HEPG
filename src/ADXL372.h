@@ -53,7 +53,7 @@ enum Bandwidth
 
 enum LinkLoop
 {
-    DEFAULT = 0b00,
+    DEFAULT1 = 0b00,
     LINKED = 0b01,
     LOOPED = 0b10
 };
