@@ -1,13 +1,12 @@
 # ADXL372
-## Arduino library for the ADXL372 accelerometer
-Available in Arduino Library manager!
+## Custom Arduino library for the ADXL372 accelerometer
+Based on [WilliamMS's library](https://github.com/WilliamMS-git) which this is a for of. 
 
 Please read the documentation: [ADXL372 Datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/adxl372.pdf)
 
-### How to install from Arduino IDE:
-1. Open the Library Manager (Ctrl + Shift + I).
-2. Search for ADXL372.
-3. Install the latest version.
+### How to install:
+1. Download library
+2. Place into Ardunio IDE librarys folder. Ex.: C:\Users\...\Documents\Arduino\libraries
 
 ### How to use:
 This library uses SPI as communication with the accelerometer. I²C is supported, but has limited functionality. See the documentation for further information.
@@ -16,12 +15,16 @@ This accelerometer is packed with features, so check out the [simple example her
 
 * ```ADXL372class(csPin)``` Create an ADXL372 object with the CS (Chip select) pin.
 * ```begin()``` Call this to initiate the accelerometer.
+* ```reset()``` Call this to reset the accelerometer.
 * ```begin(uint32_t spiClockSpeed)``` Initiate with a custom spi clock speed. 
 * ```printDevice()``` Print the device's Analog Devices ID, device ID, MEMS ID, revision ID and Device Status.
 * ```selfTest()``` Executes the self test procedure. Returns true if the test finished and passed, otherwise returns false.
 #### Reading Acceleration
 * ```setStatusCheck(bool isCheckingStatus)``` Sets if you want to check if the data is ready or not, before reading the acceleration data.
 * ```readAcceleration(float& x, float& y, float& z)``` Read the 3-axis acceleration in g.
+* ```readAccelerationX(float& x)``` Read the X axis acceleration in g.
+* ```readAccelerationY(float& y)``` Read the Y axis acceleration in g.
+* ```readAccelerationZ(float& z)``` Read the Z axis acceleration in g.
 * ```readPeakAcceleration(float& xPeak, float& yPeak, float& zPeak)``` Read the 3-axis peak acceleration in g.
 #### Offset
 * ```setOffsetTrims(OffsetTrims xOffset, OffsetTrims yOffset, OffsetTrims zOffset)``` Sets the offsets for each of the 3-axis. Can be set between -60 and 52.5 with 7.5 intervals.
@@ -115,4 +118,5 @@ detect filter are disabled.
     Intant on threshold options:
     1. ```IOT_LOW_THRESH```
     2. ```IOT_HIGH_THRESH```
+
 
