@@ -1,6 +1,6 @@
 # ADXL372
 ## Custom Arduino library for the ADXL372 accelerometer
-Based on [WilliamMS's library](https://github.com/WilliamMS-git) which this is a for of. 
+Based on [WilliamMS's library](https://github.com/WilliamMS-git) which this is a fork of. 
 
 Please read the documentation: [ADXL372 Datasheet](https://www.analog.com/media/en/technical-documentation/data-sheets/adxl372.pdf)
 
