@@ -150,6 +150,7 @@ public:
     void setFilterSettling(FilterSettlingPeriod filterSettling);
     void setInstantOnThreshold(InstantOnThreshold threshold);
     void reset();
+    byte ADXL372class::multireadRegister(byte regAddress);
 
 private:
     int m_csPin;

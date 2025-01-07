@@ -595,6 +595,16 @@ uint8_t ADXL372class::readRegister(byte regAddress)
     return value;
 }
 
+byte ADXL372class::multireadRegister(byte regAddress) {
+    digitalWrite(m_csPin, LOW);
+    byte dummy_bytes[2] = {0x00, 0x00};
+    regAddress = regAddress << 1 | 1; // Reading from a register
+    SPI.transfer(regAddress);
+    SPI.transfer(dummy_bytes, 2);
+    digitalWrite(m_csPin, HIGH);
+    return dummy_bytes;
+}
+
 void ADXL372class::writeRegister(byte regAddress, uint8_t value)
 {
     digitalWrite(m_csPin, LOW);
@@ -618,8 +628,10 @@ bool ADXL372class::selfTest()
     // Self test procedure (Page 27 in datasheet)
     setOperatingMode(FULL_BANDWIDTH);
     setFilterSettling(FSP_370ms);
-    updateRegister(SELF_TEST, true, ST_MASK);
+    writeRegister(SELF_TEST, 0x00);
     delay(300);
+    updateRegister(SELF_TEST, true, ST_MASK);
+    delay(400);
 
     if ((readRegister(SELF_TEST) & ST_DONE_MASK) == false)
     {
@@ -627,6 +639,11 @@ bool ADXL372class::selfTest()
         return false;
     }
 
-    bool isTestPassed = readRegister(SELF_TEST) & USER_ST_MASK;
+    bool isTestPassed = readRegister(SELF_TEST) & ~USER_ST_MASK;
     return isTestPassed;
+}
+
+void ADXL372class::reset()
+{
+    writeRegister(RESET, 0x52);
 }
